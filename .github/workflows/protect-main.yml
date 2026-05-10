@@ -1,0 +1,14 @@
+name: Protect main
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  protect:
+    uses: b24cloud/github-actions/.github/workflows/workflow-protect-main.yml@main
+    secrets: inherit

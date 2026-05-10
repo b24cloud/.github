@@ -1,0 +1,6 @@
+{
+  "name": "Next.js \u2014 Test & Deploy to Cloudflare",
+  "description": "Executa Vitest i desplega a Cloudflare Workers/Pages via Wrangler. Requereix secrets CLOUDFLARE_API_TOKEN i CLOUDFLARE_ACCOUNT_ID.",
+  "iconName": "octicon rocket",
+  "categories": ["JavaScript", "Cloudflare", "b24cloud"]
+}

@@ -1,0 +1,85 @@
+name: Reporte de bug
+about: Reportar un error encontrado al usar un proyecto de b24cloud
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por reportar el problema.
+        Completa esta plantilla con el mayor detalle útil posible.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descripción
+      description: Explica claramente cuál es el error.
+      placeholder: Describe el bug...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Pasos para reproducir
+      description: Indica cómo se puede reproducir el problema.
+      placeholder: |
+        1. Ve a '...'
+        2. Haz clic en '...'
+        3. Baja hasta '...'
+        4. Observa el error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Comportamiento esperado
+      description: Explica qué esperabas que ocurriera.
+      placeholder: Describe el comportamiento esperado...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Comportamiento real
+      description: Explica qué ocurrió realmente.
+      placeholder: Describe qué pasó en realidad...
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Entorno
+      description: Indica el entorno donde ocurrió el problema.
+      placeholder: Ej. Windows 11, macOS Sonoma, Ubuntu 24.04...
+    validations:
+      required: true
+
+  - type: input
+    id: project-version
+    attributes:
+      label: Versión del proyecto
+      description: Indica la versión del proyecto afectado.
+      placeholder: Ej. v1.2.3
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs relevantes
+      description: Si aplica, añade logs o mensajes de error.
+      placeholder: Pega aquí los logs relevantes...
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Contexto adicional
+      description: Añade cualquier dato adicional útil sobre el problema.
+      placeholder: Información adicional...
+    validations:
+      required: false

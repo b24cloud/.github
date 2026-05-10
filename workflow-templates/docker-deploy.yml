@@ -1,0 +1,25 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy
+    uses: b24cloud/github-actions/.github/workflows/workflow-deploy-docker-infisical.yml@main
+    with:
+      # Entorn Infisical (ex: hpe, staging, prod)
+      environment: 'prod'
+      # GitHub Environment per OIDC (deixa buit si no n'uses)
+      github_environment: ''
+      # Machine Identity ID de Infisical
+      infisical_identity_id: 'CANVIA_AQUI'
+      # Project slug d'Infisical (per defecte: global-infrastructure)
+      infisical_project_slug: 'global-infrastructure'
+      # Mode de connexió SSH: SSH_DOMAIN_HOST | SSH_CLOUDFLARED_HOST | SSH_DIRECT_IP
+      connection_mode: 'SSH_DOMAIN_HOST'
+      # Renderitzar .env des de .env.template amb variables d'Infisical
+      render_env: true
+    secrets: inherit

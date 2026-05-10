@@ -1,0 +1,54 @@
+name: Incidencia de documentación
+about: Reportar un problema de documentación o pedir una mejora
+labels: ["documentation", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por ayudar a mejorar la documentación.
+        Completa esta plantilla con el contexto necesario.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descripción
+      description: Explica claramente el problema o mejora de documentación.
+      placeholder: Describe la incidencia de documentación...
+    validations:
+      required: true
+
+  - type: input
+    id: documentation-page
+    attributes:
+      label: Página o sección
+      description: Indica qué página o sección está afectada.
+      placeholder: Ej. README.md, guía de instalación, referencia API...
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-content
+    attributes:
+      label: Contenido actual
+      description: Si aplica, pega el contenido actual que habría que mejorar.
+      placeholder: Pega aquí el fragmento relevante...
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggested-content
+    attributes:
+      label: Contenido propuesto
+      description: Explica qué debería decir o cómo debería quedar.
+      placeholder: Describe el cambio o mejora propuesta...
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Contexto adicional
+      description: Añade cualquier contexto extra o capturas si ayudan.
+      placeholder: Información adicional...
+    validations:
+      required: false

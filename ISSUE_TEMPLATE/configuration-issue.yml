@@ -1,0 +1,53 @@
+name: Incidencia de configuración
+about: Reportar un problema de configuración o pedir un cambio de configuración
+labels: ["configuration", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Usa esta plantilla para incidencias o cambios de configuración.
+
+  - type: textarea
+    id: descripcion
+    attributes:
+      label: Descripción
+      description: Explica el problema o el cambio de configuración necesario.
+      placeholder: Describe la incidencia de configuración...
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuracion-actual
+    attributes:
+      label: Configuración actual
+      description: Si aplica, pega la configuración actual.
+      placeholder: Pega aquí la configuración actual...
+    validations:
+      required: false
+
+  - type: textarea
+    id: configuracion-esperada
+    attributes:
+      label: Configuración esperada
+      description: Describe cómo debería quedar la configuración.
+      placeholder: Describe la configuración esperada...
+    validations:
+      required: true
+
+  - type: input
+    id: proyecto
+    attributes:
+      label: Proyecto
+      description: Proyecto al que afecta esta incidencia.
+      placeholder: Ej. b24cloud-api, b24cloud-dashboard, infisical...
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto-adicional
+    attributes:
+      label: Contexto adicional
+      description: Añade cualquier dato adicional útil.
+      placeholder: Información adicional...
+    validations:
+      required: false

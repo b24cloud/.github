@@ -1,0 +1,9 @@
+{
+  "name": "CI — Test & Validate (b24cloud)",
+  "description": "Detecta el stack automáticamente y aplica una estrategia por ecosistema: base lint+tests para todos los stacks detectados, typecheck/build cuando hay convención portable (Node scripts, Rust y Go).",
+  "iconName": "octicon-check-circle",
+  "categories": [
+    "Testing",
+    "Continuous integration"
+  ]
+}

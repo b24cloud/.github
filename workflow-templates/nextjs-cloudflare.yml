@@ -1,0 +1,17 @@
+name: Test & Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-deploy:
+    name: Test & Deploy to Cloudflare
+    uses: b24cloud/github-actions/.github/workflows/workflow-nextjs-test-deploy-cloudflare.yml@main
+    with:
+      node-version: '20'
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

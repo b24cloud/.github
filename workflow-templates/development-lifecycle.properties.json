@@ -1,0 +1,6 @@
+{
+  "name": "Development Lifecycle Guard",
+  "description": "Valida el cicle de vida de les PRs: branques, convencions de commit, estat del projecte i sincronitzaci\u00f3 amb GitHub Projects V2.",
+  "iconName": "octicon shield-check",
+  "categories": ["DevOps", "b24cloud"]
+}

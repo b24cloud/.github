@@ -1,0 +1,34 @@
+name: Update Docker Image
+
+on:
+  schedule:
+    # Comprova actualitzacions cada dia a les 03:00 UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Forcar actualitzacio ignorant la comprovacio de versio'
+        type: boolean
+        default: false
+
+jobs:
+  update:
+    name: Check & Update
+    uses: b24cloud/github-actions/.github/workflows/workflow-update-docker-infisical.yml@main
+    with:
+      # Entorn Infisical (ex: hpe, staging, prod)
+      environment: 'prod'
+      # GitHub Environment per OIDC
+      github_environment: ''
+      # Machine Identity ID de Infisical
+      infisical_identity_id: 'CANVIA_AQUI'
+      # Imatge Docker a monitoritzar (ex: lscr.io/linuxserver/sonarr)
+      container_image: 'CANVIA_AQUI'
+      # Tag de referencia a seguir (ex: latest, release)
+      tracking_tag: 'latest'
+      # Servei de compose a actualitzar (ex: sonarr)
+      compose_service: 'CANVIA_AQUI'
+      # Variable d'Infisical on guardar la versio desplegada
+      infisical_version_var: 'CANVIA_AQUI_VERSION'
+      force_update: ${{ inputs.force_update || false }}
+    secrets: inherit

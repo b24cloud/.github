@@ -1,0 +1,6 @@
+{
+  "name": "Docker Deploy (Infisical)",
+  "description": "Desplega un servei Docker via SSH amb secrets gestionats per Infisical. Requereix runner self-hosted.",
+  "iconName": "octicon workflow",
+  "categories": ["Deployment", "Docker", "b24cloud"]
+}

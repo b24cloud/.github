@@ -1,0 +1,11 @@
+name: CI — Test & Validate
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    uses: b24cloud/github-actions/.github/workflows/workflow-ci-test.yml@main

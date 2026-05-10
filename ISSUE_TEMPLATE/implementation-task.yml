@@ -1,0 +1,44 @@
+name: Tarea de implementación
+about: Proponer un cambio funcional, técnico o de automatización
+labels: ["enhancement", "feature-request", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Usa esta plantilla cuando quieras abrir trabajo nuevo con el mínimo contexto necesario para humanos y agentes.
+
+  - type: textarea
+    id: objetivo
+    attributes:
+      label: Objetivo
+      description: Qué hay que conseguir.
+      placeholder: Describe el objetivo del cambio...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alcance
+    attributes:
+      label: Alcance
+      description: Qué entra y qué no entra en este trabajo.
+      placeholder: Describe el alcance esperado...
+    validations:
+      required: true
+
+  - type: textarea
+    id: tests-validacion
+    attributes:
+      label: Tests o validación
+      description: Cómo se comprobará que el cambio está bien.
+      placeholder: Indica tests, validaciones manuales o explica si no aplican...
+    validations:
+      required: true
+
+  - type: textarea
+    id: definicion-hecho
+    attributes:
+      label: Definición de hecho
+      description: Qué condiciones deben cumplirse para dar el trabajo por terminado.
+      placeholder: Describe cuándo este issue se puede considerar completado...
+    validations:
+      required: true
