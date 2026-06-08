@@ -8,6 +8,11 @@ on:
   pull_request_review:
     types: [submitted]
 
+permissions:
+  contents: read
+  pull-requests: write
+  statuses: read
+
 jobs:
   protect:
     uses: b24cloud/github-actions/.github/workflows/workflow-protect-main.yml@main
