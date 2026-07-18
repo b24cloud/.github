@@ -8,12 +8,76 @@ Documentación del stack de infraestructura de la organización.
 
 | Nodo | Rol | Ubicación |
 |------|-----|-----------|
-| **Oracle** (`b24cloud-srv`) | Servidor principal, expuesto a internet | Oracle Cloud (ARM) |
-| **HPE** (`b24-hp-microserver`) | Cómputo secundario, media, ML worker | Red local |
+| **srv** (`ssh.b24cloud.com`) | Servidor principal, expuesto a internet | Oracle Cloud — tenant b24cloud |
+| **runner** (`runner.b24cloud.com`) | Runner CI/CD self-hosted ARM (en espera) | Oracle Cloud — tenant b24cloud-rosa |
+| **vollery** (`82.70.88.234`) | Servidor de producción vollery.club (app SaaS pàdel) | Oracle Cloud — tenant b24cloud-rosa |
+| **hp** (`192.168.1.5`) | Cómputo secundario, media, domótica, ML worker | Red local (oficina blaumar) |
 | **PC** (`immich-pc-oriol`) | ML worker principal (RTX 4080) | Red local |
-| **NAS** (Synology) | Almacenamiento y backups | Red local |
 
 Los nodos se interconectan mediante **Tailscale VPN** con IPs fijas almacenadas en Infisical.
+
+---
+
+## Diagrama de servicios
+
+```mermaid
+graph TD
+    classDef oracle fill:#f0a500,color:#000,stroke:#c07800
+    classDef oracle_rosa fill:#e8732a,color:#fff,stroke:#b04f10
+    classDef local fill:#3b82f6,color:#fff,stroke:#1d4ed8
+    classDef cloud fill:#6366f1,color:#fff,stroke:#4338ca
+    classDef gws fill:#34a853,color:#fff,stroke:#1a7a32
+
+    subgraph OracleB24["☁️ Oracle Cloud — tenant b24cloud"]
+        srv["🖥️ srv\nssh.b24cloud.com"]
+        NPM["Nginx Proxy Manager"]
+        Infisical["Infisical"]
+        Keycloak["Keycloak"]
+        Portainer_srv["Portainer"]
+        Bitwarden["Bitwarden"]
+        Immich_srv["Immich (frontend)"]
+        n8n["n8n"]
+        Jellyfin_proxy["Jellyfin (proxy)"]
+        srv --- NPM & Infisical & Keycloak & Portainer_srv
+        srv --- Bitwarden & Immich_srv & n8n & Jellyfin_proxy
+    end
+
+    subgraph OracleRosa["☁️ Oracle Cloud — tenant b24cloud-rosa"]
+        runner["🤖 runner\nrunner.b24cloud.com"]
+        vollery["🖥️ vollery\n82.70.88.234"]
+        VolleryApp["vollery.club (app)"]
+        vollery --- VolleryApp
+    end
+
+    subgraph Local["🏢 Red local — oficina blaumar"]
+        hp["🗄️ hp\n192.168.1.5"]
+        HA["Home Assistant + Zigbee2MQTT"]
+        qBit["qBittorrent + arr stack"]
+        Browser["Browserless + FlareSolverr"]
+        Immich_hp["Immich (storage + ML)"]
+        Jellyfin_hp["Jellyfin (transcodificación GPU)"]
+        DDNS["Cloudflare DDNS"]
+        hp --- HA & qBit & Browser & Immich_hp & Jellyfin_hp & DDNS
+
+        PC["💻 PC (RTX 4080)\nimmich-pc-oriol"]
+        Immich_pc["Immich (ML worker)"]
+        PC --- Immich_pc
+    end
+
+    subgraph CloudServices["☁️ Servicios cloud externos"]
+        CFPages["Cloudflare Pages"]
+        VolleryWeb["vollery-web (landing)"]
+        CFPages --- VolleryWeb
+
+        GWS["Google Workspace"]
+        GMail["Gmail / Drive / Meet"]
+        GWS --- GMail
+    end
+
+    Internet(["🌐 Internet"]) --> NPM
+    runner -->|"CI/CD deploys"| srv & vollery & hp
+```
+
 
 ---
 
@@ -39,6 +103,8 @@ Los nodos se interconectan mediante **Tailscale VPN** con IPs fijas almacenadas 
 | Home Assistant + Zigbee2MQTT | `domotica-blaumar` | HPE | Domótica |
 | qBittorrent + *arr stack | `qbittorrent` | HPE | Gestión de media (Sonarr, Radarr, Prowlarr, Bazarr) |
 | Browserless + FlareSolverr | `browserless` | HPE | Navegador headless para scraping |
+| vollery.club (app) | `vollery.club` | vollery | App SaaS React 19 gestión de clubs de pàdel (`app.vollery.club`) |
+| vollery.club (landing) | `vollery-web` | Cloudflare Pages | Landing marketing Astro + Tailwind (`vollery.club`) |
 
 ### Infraestructura de red
 
@@ -84,13 +150,16 @@ Los workflows siguen un modelo **hub-and-spoke**: los repos de servicio solo con
 
 ### Entornos GitHub
 
-Cada servicio usa entornos GitHub para separar nodos y gestionar aprobaciones:
+Un entorno por servidor real. Cada entorno gestiona credenciales SSH, secretos de Infisical y aprobaciones independientes:
 
-| Entorno | Nodo |
-|---------|------|
-| `Oracle` | Oracle Cloud |
-| `HPE` | HPE Microserver local |
-| `Xpenology` | Synology NAS |
+| Entorno | Servidor | Ubicación |
+|---------|----------|-----------|
+| `srv` | srv (`ssh.b24cloud.com`) | Oracle Cloud — tenant b24cloud |
+| `runner` | runner (`runner.b24cloud.com`) | Oracle Cloud — tenant b24cloud-rosa |
+| `vollery` | vollery (`82.70.88.234`) | Oracle Cloud — tenant b24cloud-rosa |
+| `hpe` | hp (`192.168.1.5`) | Red local (oficina blaumar) |
+| `pc` | PC (`immich-pc-oriol`) | Red local |
+
 
 ---
 
@@ -151,14 +220,15 @@ Los workflows soportan tres modos configurables por entorno:
 | `SSH_CLOUDFLARED_HOST` | Tunnel Cloudflare | NATs restrictivos |
 | `SSH_DIRECT_IP` | IP pública directa | Fallback |
 
-### Tailscale (red privada inter-nodo)
+### Tailscale (red privada entre nodos)
 
 | Nodo | IP Tailscale |
-|------|-------------|
-| Oracle | 100.110.234.71 |
-| HPE | 100.102.182.25 |
+|------|--------------|
+| srv | 100.110.234.71 |
+| hp | 100.102.182.25 |
 | PC (contenedor) | 100.86.126.8 |
 | PC (host) | 100.69.152.42 |
+
 
 ---
 
@@ -168,7 +238,7 @@ Los workflows soportan tres modos configurables por entorno:
 |----------|--------|---------|-----------|
 | Infisical | Script + pg_dump + tar.gz | HPE | 7d diario, 30d semanal, 365d máx |
 | Immich | Contenedor `postgres-backup-local` | `./db_dumps` | Configurable |
-| Keycloak | Despliegue standby | NAS | — |
+| Keycloak | Despliegue standby | HPE | — |
 
 ---
 

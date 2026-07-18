@@ -7,12 +7,16 @@ Estas instrucciones complementan `AGENTS.md`; en caso de conflicto, aplica la re
 
 ## Contexto de arquitectura b24cloud
 
-- **Infra:** Oracle Cloud (VM.Standard.A1.Flex, Ubuntu 24.04) + Cloudflare (Workers, Pages, Tunnel).
+- **Infra:** Oracle Cloud — 2 tenants:
+  - `b24cloud` (tenant principal): nodo **srv** (`ssh.b24cloud.com`)
+  - `b24cloud-rosa` (tenant secundario): nodos **runner** (`runner.b24cloud.com`) y **vollery** (`82.70.88.234`)
+  - Red local: **hp** HPE Microserver (`192.168.1.5`) + **PC** (`immich-pc-oriol`, RTX 4080)
+  - Cloudflare (Workers, Pages, Tunnel)
 - **CI/CD:** GitHub Actions con workflows reutilizables centralizados en `b24cloud/github-actions`.
 - **Secrets:** Infisical como fuente de verdad; GitHub Secrets como fallback operativo.
 - **Identity:** Keycloak SSO + Infisical Machine Identities (OIDC) por repositorio.
-- **Runner:** Self-hosted ephemeral en `b24cloud-runner` (labels: `self-hosted,linux,arm64`).
-- **Containers:** Docker en `b24cloud-openclaw` y `b24cloud-srv`.
+- **Runner:** Self-hosted efímero en **runner** (labels: `self-hosted,linux,arm64`).
+- **Containers:** Docker en **srv**, **hp** y **vollery**.
 
 ---
 
