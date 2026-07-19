@@ -10,9 +10,9 @@ Documentación del stack de infraestructura de la organización.
 |------|-----------|-----------|-------|------------|----------|
 | **srv** (`ssh.b24cloud.com`) | `80.225.191.139` | `10.0.0.198` | A1.Flex | 4 OCPU / 24 GB | Oracle Cloud — tenant `b24cloud` |
 | **runner** (`runner.b24cloud.com`) | `82.70.74.172` | `10.0.169.230` | A1.Flex | 2 OCPU / 12 GB | Oracle Cloud — tenant `b24cloud-rosa` |
-| **vollery** | `82.70.88.234` | `10.0.48.246` | A1.Flex | 2 OCPU / 12 GB | Oracle Cloud — tenant `b24cloud-rosa` |
-| **hp** | `192.168.1.5` _(local)_ | — | HPE MicroServer Gen10 | — | Red local (oficina blaumar) |
-| **pc** | _(Tailscale)_ | — | PC Windows (RTX 4080) | — | Red local |
+| **vollery** (`app.vollery.club`) | `82.70.88.234` | `10.0.48.246` | A1.Flex | 2 OCPU / 12 GB | Oracle Cloud — tenant `b24cloud-rosa` |
+| **hp** (`blaumar.bonany.net`) | `192.168.1.5` _(local)_ | — | HPE MicroServer Gen10 | — | Red local (oficina blaumar) |
+| **pc** (_(Tailscale)_) | _(Tailscale)_ | — | PC Windows (RTX 4080) | — | Red local |
 
 Los nodos se interconectan mediante **Tailscale VPN** con IPs fijas almacenadas en Infisical.
 
