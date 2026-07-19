@@ -6,13 +6,13 @@ Documentación del stack de infraestructura de la organización.
 
 ## Nodos
 
-| Nodo | Rol | Ubicación |
-|------|-----|-----------|
-| **srv** (`ssh.b24cloud.com`) | Servidor principal, expuesto a internet | Oracle Cloud — tenant b24cloud |
-| **runner** (`runner.b24cloud.com`) | Runner CI/CD self-hosted ARM (en espera) | Oracle Cloud — tenant b24cloud-rosa |
-| **vollery** (`82.70.88.234`) | Servidor de producción vollery.club (app SaaS pàdel) | Oracle Cloud — tenant b24cloud-rosa |
-| **hp** (`192.168.1.5`) | Cómputo secundario, media, domótica, ML worker | Red local (oficina blaumar) |
-| **PC** (`immich-pc-oriol`) | ML worker principal (RTX 4080) | Red local |
+| Nodo | IP pública | IP privada | Shape | OCPU / RAM | Ubicación |
+|------|-----------|-----------|-------|------------|----------|
+| **srv** (`ssh.b24cloud.com`) | `80.225.191.139` | `10.0.0.198` | A1.Flex | 4 OCPU / 24 GB | Oracle Cloud — tenant `b24cloud` |
+| **runner** (`runner.b24cloud.com`) | `82.70.74.172` | `10.0.169.230` | A1.Flex | 2 OCPU / 12 GB | Oracle Cloud — tenant `b24cloud-rosa` |
+| **vollery** | `82.70.88.234` | `10.0.48.246` | A1.Flex | 2 OCPU / 12 GB | Oracle Cloud — tenant `b24cloud-rosa` |
+| **hp** | `192.168.1.5` _(local)_ | — | HPE MicroServer Gen10 | — | Red local (oficina blaumar) |
+| **pc** | _(Tailscale)_ | — | PC Windows (RTX 4080) | — | Red local |
 
 Los nodos se interconectan mediante **Tailscale VPN** con IPs fijas almacenadas en Infisical.
 
@@ -51,13 +51,15 @@ graph TD
 
     subgraph Local["🏢 Red local — oficina blaumar"]
         hp["🗄️ hp\n192.168.1.5"]
-        HA["Home Assistant + Zigbee2MQTT"]
+        NPM_hp["Nginx Proxy Manager"]
+        HA["Home Assistant"]
+        Z2M["Zigbee2MQTT"]
         qBit["qBittorrent + arr stack"]
         Browser["Browserless + FlareSolverr"]
         Immich_hp["Immich (storage + ML)"]
         Jellyfin_hp["Jellyfin (transcodificación GPU)"]
         DDNS["Cloudflare DDNS"]
-        hp --- HA & qBit & Browser & Immich_hp & Jellyfin_hp & DDNS
+        hp --- NPM_hp & HA & Z2M & qBit & Browser & Immich_hp & Jellyfin_hp & DDNS
 
         PC["💻 PC (RTX 4080)\nimmich-pc-oriol"]
         Immich_pc["Immich (ML worker)"]
@@ -75,6 +77,7 @@ graph TD
     end
 
     Internet(["🌐 Internet"]) --> NPM
+    Internet --> NPM_hp
     runner -->|"CI/CD deploys"| srv & vollery & hp
 ```
 
@@ -85,32 +88,36 @@ graph TD
 
 ### Core
 
-| Servicio | Repo | Nodo | Descripción |
-|----------|------|------|-------------|
-| Nginx Proxy Manager | `proxy` | Oracle | Reverse proxy, SSL (Let's Encrypt) |
-| Infisical | `infisical` | Oracle | Gestión centralizada de secretos (self-hosted) |
-| Keycloak | `keycloak` | Oracle | Identity Provider (OAuth2/OIDC, SSO) |
-| Portainer | `portainer` | Oracle | Gestión de contenedores |
+| Servicio | Repo | Nodo | URL pública | Descripción |
+|----------|------|------|-------------|-------------|
+| Nginx Proxy Manager | `proxy` | srv | _(panel interno `:81`)_ | Reverse proxy, SSL (Let's Encrypt) |
+| Infisical | `infisical` | srv | `infisical.b24cloud.com` | Gestión centralizada de secretos (self-hosted) |
+| Keycloak | `keycloak` | srv | `sso.b24cloud.com` | Identity Provider (OAuth2/OIDC, SSO) |
+| Portainer | `portainer` | srv | `docker.b24cloud.com` | Gestión de contenedores |
 
 ### Aplicaciones
 
-| Servicio | Repo | Nodo | Descripción |
-|----------|------|------|-------------|
-| Bitwarden (Vaultwarden) | `bitwarden` | Oracle | Gestor de contraseñas |
-| Immich | `immich` | Oracle + HPE + PC | Gestión de fotos (arquitectura distribuida) |
-| Jellyfin | `jellyfin` | Oracle + HPE | Streaming de media (transcodificación remota via GPU en HPE) |
-| n8n | `n8n` | Oracle | Automatización de flujos |
-| Home Assistant + Zigbee2MQTT | `domotica-blaumar` | HPE | Domótica |
-| qBittorrent + *arr stack | `qbittorrent` | HPE | Gestión de media (Sonarr, Radarr, Prowlarr, Bazarr) |
-| Browserless + FlareSolverr | `browserless` | HPE | Navegador headless para scraping |
-| vollery.club (app) | `vollery.club` | vollery | App SaaS React 19 gestión de clubs de pàdel (`app.vollery.club`) |
-| vollery.club (landing) | `vollery-web` | Cloudflare Pages | Landing marketing Astro + Tailwind (`vollery.club`) |
+| Servicio | Repo | Nodo | URL pública | Descripción |
+|----------|------|------|-------------|-------------|
+| Bitwarden (Vaultwarden) | `bitwarden` | srv | `vault.b24cloud.com` | Gestor de contraseñas |
+| Immich | `immich` | srv + hp + pc | `photos.b24cloud.com` | Gestión de fotos (arquitectura distribuida) |
+| Jellyfin | `jellyfin` | srv + hp | `media.b24cloud.com` | Streaming de media (transcodificación remota via GPU en hp) |
+| n8n | `n8n` | srv | `n8n.b24cloud.com` | Automatización de flujos |
+| Home Assistant | `domotica-blaumar` | hp | `homeassistant.bonany.net` | Domótica (automatización del hogar) |
+| Zigbee2MQTT | `domotica-blaumar` | hp | `domotica.bonany.net` | Interfaz de dispositivos Zigbee (MQTT bridge) |
+| qBittorrent + *arr stack | `qbittorrent` | hp | `down.bonany.net` (qBit), `sonarr/radarr/prowlarr/bazarr.bonany.net` | qBittorrent, Sonarr, Radarr, Prowlarr, Bazarr |
+| Browserless + FlareSolverr | `browserless` | hp | _(acceso interno)_ | Navegador headless para scraping |
+| vollery.club (app) | `vollery.club` | vollery | `app.vollery.club` | App SaaS React 19 gestión de clubs de pàdel |
+| vollery.club (landing) | `vollery-web` | Cloudflare Pages | `vollery.club` | Landing marketing Astro + Tailwind |
 
 ### Infraestructura de red
 
 | Servicio | Repo | Nodo | Descripción |
 |----------|------|------|-------------|
-| Cloudflare DDNS | `cloudflare-ddns` | HPE | Actualización automática de DNS ante cambio de IP pública |
+| OCI — tenant `b24cloud` | _(OCI)_ | srv | Instancia `b24cloud-srv`. A1.Flex 4 OCPU / 24 GB. Creada Nov 2025. |
+| OCI — tenant `b24cloud-rosa` | _(OCI)_ | runner, vollery | Instancias `b24cloud-runner` y `b24cloud-vollery.club`. A1.Flex 2 OCPU / 12 GB c/u. |
+| Cloudflare DDNS | `cloudflare-ddns` | hp | Actualización automática de DNS ante cambio de IP pública |
+| Cockpit | _(sistema)_ | hp | Panel de gestión del sistema (`cockpit.bonany.net`) |
 
 ---
 
