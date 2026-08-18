@@ -22,7 +22,6 @@ Este repositorio contiene las configuraciones y plantillas globales para todos l
 │   ├── implementation-task.yml
 │   └── config.yml
 ├── AGENTS.md
-├── INFRASTRUCTURE.md
 ├── DEVELOPMENT-LIFECYCLE.md
 ├── AGENT-ASSIGNMENT-GUIDE.md
 ├── CONTRIBUTING.md
@@ -35,7 +34,6 @@ Este repositorio contiene las configuraciones y plantillas globales para todos l
 
 - **`ISSUE_TEMPLATE/`**: Plantillas por defecto para bugs, configuraciones, documentación y tareas de implementación, además de la configuración global de issue templates.
 - **`AGENTS.md`**: Instrucciones universales para agentes de desarrollo (Claude Code, GitHub Copilot, Codex, Cursor y similares).
-- **`INFRASTRUCTURE.md`**: Documentación del stack de infraestructura (nodos, servicios, CI/CD, secretos, red).
 - **`DEVELOPMENT-LIFECYCLE.md`**: Baseline organizacional del ciclo de trabajo con issues, PRs y Project.
 - **`AGENT-ASSIGNMENT-GUIDE.md`**: Reglas base de asignación para agentes de implementación.
 - **`CONTRIBUTING.md`**: Guía para contribuir al código de la organización.
@@ -50,3 +48,4 @@ Estas plantillas y guías se aplican como baseline a los repositorios de la orga
 ## Contacto
 
 Para más información, contacta al equipo de soporte de `b24cloud`.
+
