@@ -20,8 +20,7 @@ jobs:
       environment: "prod"
       # GitHub Environment per OIDC
       github_environment: ""
-      # Machine Identity ID de Infisical
-      infisical_identity_id: "CANVIA_AQUI"
+      # Machine Identity ID de Infisical (opcional: si s'omet, fa servir el secret INFISICAL_IDENTITY_ID)
       # Imatge Docker a monitoritzar (ex: lscr.io/linuxserver/sonarr)
       container_image: "CANVIA_AQUI"
       # Tag de referencia a seguir (ex: latest, release)

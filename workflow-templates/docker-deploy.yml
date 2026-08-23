@@ -14,8 +14,7 @@ jobs:
       environment: "prod"
       # GitHub Environment per OIDC (deixa buit si no n'uses)
       github_environment: ""
-      # Machine Identity ID de Infisical
-      infisical_identity_id: "CANVIA_AQUI"
+      # Machine Identity ID de Infisical (opcional: si s'omet, fa servir el secret INFISICAL_IDENTITY_ID)
       # Project slug d'Infisical (per defecte: global-infrastructure)
       infisical_project_slug: "global-infrastructure"
       # Mode de connexió SSH: SSH_DOMAIN_HOST | SSH_CLOUDFLARED_HOST | SSH_DIRECT_IP
