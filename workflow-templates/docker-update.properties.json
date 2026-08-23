@@ -1,5 +1,5 @@
 {
-  "name": "Docker Update (Infisical)",
+  "name": "Docker Update",
   "description": "Comprova i actualitza autom\u00e0ticament una imatge Docker. Persiteix la versi\u00f3 a Infisical. Requereix runner self-hosted.",
   "iconName": "octicon sync",
   "categories": ["Deployment", "Docker", "b24cloud"]
