@@ -14,7 +14,7 @@ on:
 jobs:
   update:
     name: Check & Update
-    uses: b24cloud/github-actions/.github/workflows/workflow-update.yml@main
+    uses: b24cloud/github-actions/.github/workflows/workflow-update-docker-infisical.yml@main
     with:
       # Entorn Infisical (ex: hpe, staging, prod)
       environment: "prod"
