@@ -1,51 +1,25 @@
-# Repositorio de configuración de la organización b24cloud
+# .github
 
-Este repositorio contiene las configuraciones y plantillas globales para todos los repositorios de la organización `b24cloud`.
+> Configuración y plantillas globales de la organización b24cloud
 
-## Limites y responsabilidades
+## Stack
 
-- Este repositorio define estandares globales de colaboracion y community health.
-- Aqui deben vivir plantillas de issue y PR, guias de contribucion y politicas.
-- Aqui no deben vivir workflows de automatizacion de CI/CD ni logica ejecutable reusable.
-- Los workflows reutilizables de despliegue, lifecycle y sincronizacion de Project viven en `b24cloud/github-actions`.
-- Cada repositorio de servicio mantiene solo wrappers minimos en `.github/workflows/` para disparar eventos locales y delegar en `github-actions`.
-- Si hay conflicto entre plantilla y automatizacion, la automatizacion reusable es la fuente de verdad operativa.
+- **GitHub Actions** - CI/CD
+- **Issue Templates** - Plantillas
+- **Workflows** - Automatización
 
-## Estructura
+## Quick Start
 
-```
-.github/
-├── ISSUE_TEMPLATE/
-│   ├── bug-report.yml
-│   ├── configuration-issue.yml
-│   ├── documentation.yml
-│   ├── implementation-task.yml
-│   └── config.yml
-├── AGENTS.md
-├── DEVELOPMENT-LIFECYCLE.md
-├── AGENT-ASSIGNMENT-GUIDE.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── SECURITY.md
-└── SUPPORT.md
+```bash
+git clone https://github.com/b24cloud/.github.git
+cd .github
+docker compose up -d
 ```
 
-## Contenido
+## Docs
 
-- **`ISSUE_TEMPLATE/`**: Plantillas por defecto para bugs, configuraciones, documentación y tareas de implementación, además de la configuración global de issue templates.
-- **`AGENTS.md`**: Instrucciones universales para agentes de desarrollo (Claude Code, GitHub Copilot, Codex, Cursor y similares).
-- **`DEVELOPMENT-LIFECYCLE.md`**: Baseline organizacional del ciclo de trabajo con issues, PRs y Project.
-- **`AGENT-ASSIGNMENT-GUIDE.md`**: Reglas base de asignación para agentes de implementación.
-- **`CONTRIBUTING.md`**: Guía para contribuir al código de la organización.
-- **`CODE_OF_CONDUCT.md`**: Código de conducta para la comunidad.
-- **`SECURITY.md`**: Política de seguridad y cómo reportar vulnerabilidades.
-- **`SUPPORT.md`**: Información sobre cómo obtener soporte.
+[Agents](AGENTS.md) · [Contributing](CONTRIBUTING.md)
 
-## Uso
+## License
 
-Estas plantillas y guías se aplican como baseline a los repositorios de la organización cuando no hay una definición local más específica.
-
-## Contacto
-
-Para más información, contacta al equipo de soporte de `b24cloud`.
-
+Proprietary — b24cloud
