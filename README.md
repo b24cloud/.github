@@ -1,51 +1,38 @@
-# Repositorio de configuración de la organización b24cloud
+# .github
 
-Este repositorio contiene las configuraciones y plantillas globales para todos los repositorios de la organización `b24cloud`.
+> Configuración y plantillas globales de la organización b24cloud
 
-## Limites y responsabilidades
+## Stack
 
-- Este repositorio define estandares globales de colaboracion y community health.
-- Aqui deben vivir plantillas de issue y PR, guias de contribucion y politicas.
-- Aqui no deben vivir workflows de automatizacion de CI/CD ni logica ejecutable reusable.
-- Los workflows reutilizables de despliegue, lifecycle y sincronizacion de Project viven en `b24cloud/github-actions`.
-- Cada repositorio de servicio mantiene solo wrappers minimos en `.github/workflows/` para disparar eventos locales y delegar en `github-actions`.
-- Si hay conflicto entre plantilla y automatizacion, la automatizacion reusable es la fuente de verdad operativa.
+- **README_TEMPLATE.md** — Plantilla minimalista para todos los repos
+- **README_GUIDE.md** — Reglas de documentación (estructura, filosofía, checklist)
+- **AGENTS.md** — Instrucciones universales para agentes de desarrollo
+- **CONTRIBUTING.md** — Flujo de contribución
+- **Issue/PR Templates** — Plantillas estandarizadas
+- **workflow-templates/** — Workflows base de GitHub Actions
 
-## Estructura
+## Quick Start
 
-```
-.github/
-├── ISSUE_TEMPLATE/
-│   ├── bug-report.yml
-│   ├── configuration-issue.yml
-│   ├── documentation.yml
-│   ├── implementation-task.yml
-│   └── config.yml
-├── AGENTS.md
-├── DEVELOPMENT-LIFECYCLE.md
-├── AGENT-ASSIGNMENT-GUIDE.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── SECURITY.md
-└── SUPPORT.md
+Para crear un nuevo repo con el estándar:
+
+```bash
+# 1. Copia la plantilla
+cp README_TEMPLATE.md ../mi-nuevo-repo/README.md
+
+# 2. Adapta tagline, Stack y Quick Start (ver guía)
+# 3. Sincroniza la descripción corta en GitHub Settings
 ```
 
-## Contenido
+Via web: `New repository` → copia el contenido de [`README_TEMPLATE.md`](README_TEMPLATE.md).
 
-- **`ISSUE_TEMPLATE/`**: Plantillas por defecto para bugs, configuraciones, documentación y tareas de implementación, además de la configuración global de issue templates.
-- **`AGENTS.md`**: Instrucciones universales para agentes de desarrollo (Claude Code, GitHub Copilot, Codex, Cursor y similares).
-- **`DEVELOPMENT-LIFECYCLE.md`**: Baseline organizacional del ciclo de trabajo con issues, PRs y Project.
-- **`AGENT-ASSIGNMENT-GUIDE.md`**: Reglas base de asignación para agentes de implementación.
-- **`CONTRIBUTING.md`**: Guía para contribuir al código de la organización.
-- **`CODE_OF_CONDUCT.md`**: Código de conducta para la comunidad.
-- **`SECURITY.md`**: Política de seguridad y cómo reportar vulnerabilidades.
-- **`SUPPORT.md`**: Información sobre cómo obtener soporte.
+## Docs
 
-## Uso
+- [Guía de READMEs](README_GUIDE.md) — estructura obligatoria y checklist
+- [Plantilla README](README_TEMPLATE.md) — para copiar/pegar
+- [AGENTS.md](AGENTS.md) — reglas de trabajo con agentes
+- [Contributing](CONTRIBUTING.md) — cómo proponer cambios
+- [Development Lifecycle](DEVELOPMENT-LIFECYCLE.md) — ciclo de vida
 
-Estas plantillas y guías se aplican como baseline a los repositorios de la organización cuando no hay una definición local más específica.
+## License
 
-## Contacto
-
-Para más información, contacta al equipo de soporte de `b24cloud`.
-
+Proprietary — b24cloud
