@@ -12,6 +12,10 @@ Estas instrucciones complementan `AGENTS.md`; en caso de conflicto, aplica la re
   - `b24cloud-rosa` (tenant secundario): nodos **runner** (`runner.b24cloud.com`) y **vollery** (`82.70.88.234`)
   - Red local: **hp** HPE Microserver (`192.168.1.5`) + **PC** (`immich-pc-oriol`, RTX 4080)
   - Cloudflare (Workers, Pages, Tunnel)
+- **Media stack split:** qbittorrent repo contiene compose unificado con profiles:
+  - `profile: hp` → qBittorrent (hp)
+  - `profile: srv` → Sonarr, Radarr, Prowlarr, Bazarr, Kavita (srv)
+  - Deploy workflows separados: `deploy-hp.yml`, `deploy-srv.yml`
 - **CI/CD:** GitHub Actions con workflows reutilizables centralizados en `b24cloud/github-actions`.
 - **Secrets:** Infisical como fuente de verdad; GitHub Secrets como fallback operativo.
 - **Identity:** Keycloak SSO + Infisical Machine Identities (OIDC) por repositorio.
