@@ -103,6 +103,14 @@ Ejemplos:
 - `docs(readme): actualiza guía de instalación`
 - `chore(deps): actualiza dependencias a versiones estables`
 
+## 🌍 Internacionalización y Traducciones (i18n)
+
+En todos los proyectos con interfaz de usuario (`b24cloud-web`, `pulsari-app`, `pulsari-web`, `vollery.club`, `vollery-web`), las traducciones están centralizadas con **Weblate** (`https://weblate.b24cloud.com`):
+
+- **Solo edita el archivo del idioma base**: (`es.json` o `en.json` según el repositorio).
+- **No traduzcas manualmente a otros idiomas en tu código**: Weblate sincroniza automáticamente los textos base y el equipo o los traductores completan el resto de idiomas.
+- **Guía completa para desarrolladores**: Consulta la [Guía de i18n y Weblate para Desarrolladores](https://github.com/b24cloud/weblate/blob/main/docs/developer-guide.md).
+
 ---
 
 ## 🔍 Revisión de código

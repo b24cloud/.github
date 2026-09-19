@@ -32,6 +32,7 @@ Via web: `New repository` → copia el contenido de [`README_TEMPLATE.md`](READM
 - [AGENTS.md](AGENTS.md) — reglas de trabajo con agentes
 - [Contributing](CONTRIBUTING.md) — cómo proponer cambios
 - [Development Lifecycle](DEVELOPMENT-LIFECYCLE.md) — ciclo de vida
+- [Guía de i18n y Weblate](https://github.com/b24cloud/weblate/blob/main/docs/developer-guide.md) — flujo de traducciones centralizadas
 
 ## License
 
