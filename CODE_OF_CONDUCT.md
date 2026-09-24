@@ -2,7 +2,7 @@
 
 ## 📜 Nuestra Promesa
 
-En el interés de fomentar un entorno abierto e inclusivo, nos comprometemos a hacer de la participación en nuestra comunidad un experiencia libre de acoso para todos, sin importar la edad, tamaño corporal, discapacidad, etnia, características sexuales, identidad y expresión de género, nivel de experiencia, educación, nivel socioeconómico, nacionalidad, apariencia personal, raza, religión o identidad y orientación sexual.
+En el interés de fomentar un entorno abierto e inclusivo, nos comprometemos a hacer de la participación en nuestra comunidad una experiencia libre de acoso para todos, sin importar la edad, tamaño corporal, discapacidad, etnia, características sexuales, identidad y expresión de género, nivel de experiencia, educación, nivel socioeconómico, nacionalidad, apariencia personal, raza, religión o identidad y orientación sexual.
 
 ## 🕊️ Estándares de Comportamiento
 

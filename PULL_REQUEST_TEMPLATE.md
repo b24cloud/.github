@@ -37,6 +37,6 @@ Closes #<!-- número del issue -->
 - [ ] La rama **no es `main`** — trabajé en `feat/`, `fix/`, `chore/` o `docs/`
 - [ ] Todos los checks de la tabla anterior están en PASS
 - [ ] No he modificado archivos fuera del alcance del issue
-- [ ] No he incluidos secretos, credenciales, tokens, claves, datos personales, endpoints internos ni detalles de infraestructura; los ejemplos están redactados
+- [ ] No he incluido secretos, credenciales, tokens, claves, datos personales, endpoints internos ni detalles de infraestructura; los ejemplos están redactados
 - [ ] La PR incluye `Closes #<número>` vinculado al issue
 - [ ] He revisado el diff completo antes de marcar como Ready for review
