@@ -25,6 +25,7 @@ Closes #<!-- número del issue -->
 | Lint | `...` | PASS |
 | Typecheck | `...` | PASS / N/A |
 | Tests | `...` | PASS / N/A |
+| Coverage (≥ 85%) | `...` | PASS (<X>%) / N/A |
 | Build | `...` | PASS |
 
 **Validaciones no ejecutadas** (si aplica):
@@ -35,6 +36,7 @@ Closes #<!-- número del issue -->
 ## Checklist
 
 - [ ] La rama **no es `main`** — trabajé en `feat/`, `fix/`, `chore/` o `docs/`
+- [ ] He implementado el set completo de tests mínimos para cerrar la PR con tranquilidad (cobertura ≥ 85% en código ejecutable, o N/A justificado)
 - [ ] Todos los checks de la tabla anterior están en PASS
 - [ ] No he modificado archivos fuera del alcance del issue
 - [ ] No he incluidos secretos, credenciales, tokens, claves, datos personales, endpoints internos ni detalles de infraestructura; los ejemplos están redactados
